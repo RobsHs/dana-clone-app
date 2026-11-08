@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DANA</string>
+    
+    <!-- Top Action Bar -->
+    <string name="saldo_dana">Saldo DANA</string>
+    <string name="rp_prefix">Rp</string>
+    <string name="rp_hidden">Rp ••••••••</string>
+    <string name="action_pindai">Pindai</string>
+    <string name="action_topup">Isi Saldo</string>
+    <string name="action_kirim">Kirim</string>
+    <string name="action_minta">Minta</string>
+
+    <!-- Services Grid -->
+    <string name="service_pulsa">Pulsa &amp; Data</string>
+    <string name="service_listrik">Listrik PLN</string>
+    <string name="service_air">Air PDAM</string>
+    <string name="service_games">Games</string>
+    <string name="service_bpjs">BPJS</string>
+    <string name="service_emas">eMAS</string>
+    <string name="service_danadeals">DANA Deals</string>
+    <string name="service_semua">Lihat Semua</string>
+
+    <!-- Security & Guarantee -->
+    <string name="dana_protection_title">DANA Protection</string>
+    <string name="dana_protection_desc">100% Garansi Uang Kembali dengan proteksi keamanan terintegrasi.</string>
+
+    <!-- Bottom Navigation -->
+    <string name="nav_beranda">Beranda</string>
+    <string name="nav_aktivitas">Aktivitas</string>
+    <string name="nav_pay">Pay</string>
+    <string name="nav_dompet">Dompet</string>
+    <string name="nav_saya">Saya</string>
+
+    <!-- Kirim / Send Money -->
+    <string name="kirim_uang_title">Kirim Uang</string>
+    <string name="kirim_ke_nomor">Kirim ke Nomor Telepon</string>
+    <string name="kirim_ke_bank">Kirim ke Rekening Bank</string>
+    <string name="label_penerima">Nama Penerima</string>
+    <string name="label_rekening">Nomor HP / Rekening</string>
+    <string name="label_nominal">Jumlah Kirim (Rp)</string>
+    <string name="label_catatan">Catatan (Opsional)</string>
+    <string name="btn_kirim_sekarang">Kirim Uang Sekarang</string>
+
+    <!-- Minta / Request Money -->
+    <string name="minta_uang_title">Minta Uang</string>
+    <string name="minta_desc">Bagikan kode QR atau link untuk menerima uang secara instan.</string>
+    <string name="btn_atur_jumlah">Atur Jumlah</string>
+    <string name="btn_bagikan">Bagikan Kode QR</string>
+
+    <!-- Riwayat / Activity History -->
+    <string name="riwayat_transaksi">Riwayat Transaksi</string>
+    <string name="tab_semua">Semua</string>
+    <string name="tab_masuk">Uang Masuk</string>
+    <string name="tab_keluar">Uang Keluar</string>
+    <string name="riwayat_empty_title">Belum Ada Transaksi</string>
+    <string name="riwayat_empty_desc">Semua transaksi yang kamu lakukan akan tersimpan aman di sini.</string>
+
+    <!-- Profile / Saya -->
+    <string name="profile_title">Profil Saya</string>
+    <string name="dana_premium">DANA Premium</string>
+    <string name="storage_type">Penyimpanan Internal Aplikasi</string>
+    <string name="storage_desc">Data lokal terisolasi dalam database internal Room (/data/user/0/id.dana.clone/). Tidak menggunakan memori eksternal.</string>
+</resources>

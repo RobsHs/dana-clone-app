@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Core DANA Color Palette -->
+    <color name="dana_blue">#118EEA</color>
+    <color name="dana_blue_dark">#0B6EBA</color>
+    <color name="dana_blue_light">#EAF4FD</color>
+    
+    <!-- Accent and Semantic -->
+    <color name="dana_gold">#FFB800</color>
+    <color name="dana_green">#16B364</color>
+    <color name="dana_red">#F04438</color>
+
+    <!-- Neutrals and Backgrounds -->
+    <color name="bg_page">#F5F6F8</color>
+    <color name="bg_card">#FFFFFF</color>
+    <color name="text_primary">#1A1A1A</color>
+    <color name="text_secondary">#666666</color>
+    <color name="text_muted">#8E8E93</color>
+    <color name="divider_line">#E5E7EB</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+</resources>

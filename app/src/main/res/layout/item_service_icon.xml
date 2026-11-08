@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_columnWeight="1"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center"
+    android:minHeight="68dp"
+    android:orientation="vertical"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <FrameLayout
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:background="@drawable/bg_circle_blue_light">
+
+        <ImageView
+            android:id="@+id/ivServiceIcon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:contentDescription="Layanan"
+            android:src="@drawable/ic_kirim"
+            app:tint="@color/dana_blue" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvServiceTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="Layanan"
+        android:textColor="@color/text_primary"
+        android:textSize="11sp" />
+</LinearLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 
+      Internal Storage Sandboxing:
+      Zero external storage permissions (No READ_EXTERNAL_STORAGE, No WRITE_EXTERNAL_STORAGE).
+      All databases, preferences, and documents remain strictly isolated within /data/user/0/id.dana.clone/.
+    -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:name=".DanaCloneApplication"
+        android:allowBackup="false"
+        android:icon="@drawable/ic_dana_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_dana_logo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.DanaClone">
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.DanaClone"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- Deep Link Scheme matching DANA reverse-engineered specs -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="danaclone" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
