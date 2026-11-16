@@ -7,6 +7,9 @@ on:
     branches: [ "main", "master" ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build Debug APK
@@ -36,8 +39,34 @@ jobs:
           ./gradlew assembleDebug --stacktrace --no-daemon || \
           (sleep 5 && ./gradlew assembleDebug --stacktrace --no-daemon)
 
+      - name: Rename APK for Easy Identification
+        run: |
+          cp app/build/outputs/apk/debug/app-debug.apk dana-clone-v2.151.0-pokemon.apk
+
       - name: Upload Debug APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: dana-clone-debug-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: dana-clone-v2.151.0-pokemon.apk
+
+      - name: Publish Direct APK Download Release
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        continue-on-error: true
+        with:
+          tag_name: v2.151.0
+          name: "DANA v2.151.0 Pokémon Edition (Debug APK)"
+          draft: false
+          prerelease: false
+          body: |
+            ## DANA Clone — Pokémon Edition v2.151.0 ⚡
+            File APK siap diinstal langsung di HP Android.
+            
+            ### Panduan Instalasi di HP:
+            1. Unduh file **dana-clone-v2.151.0-pokemon.apk** di bawah.
+            2. Buka file yang diunduh pada HP Anda.
+            3. Jika muncul *"Install unknown apps"*, izinkan untuk browser / file manager Anda.
+            4. Selesai! Aplikasi DANA siap digunakan 100% offline.
+          files: dana-clone-v2.151.0-pokemon.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
