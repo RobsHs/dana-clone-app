@@ -107,3 +107,4 @@ class TransactionDetailActivity : AppCompatActivity() {
         const val EXTRA_METHOD = "extra_method"
     }
 }
+

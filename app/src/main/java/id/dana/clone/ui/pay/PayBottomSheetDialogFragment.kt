@@ -48,8 +48,26 @@ class PayBottomSheetDialogFragment : BottomSheetDialogFragment() {
             dismiss()
         }
 
+        binding.cameraViewfinder.setOnClickListener {
+            val intent = android.content.Intent(requireContext(), PaymentSuccessActivity::class.java).apply {
+                putExtra(PaymentSuccessActivity.EXTRA_MERCHANT, "NADDD, Toko HP, Pulsa &\nI")
+                putExtra(PaymentSuccessActivity.EXTRA_AMOUNT, 8000L)
+                putExtra(PaymentSuccessActivity.EXTRA_FORMATTED_AMOUNT, "Rp8.000")
+                putExtra(PaymentSuccessActivity.EXTRA_BALANCE, "Rp 9.498")
+            }
+            startActivity(intent)
+            dismiss()
+        }
+
         binding.btnPayGallery.setOnClickListener {
-            Toast.makeText(requireContext(), "Pilih QR code dari galeri", Toast.LENGTH_SHORT).show()
+            val intent = android.content.Intent(requireContext(), PaymentSuccessActivity::class.java).apply {
+                putExtra(PaymentSuccessActivity.EXTRA_MERCHANT, "NADDD, Toko HP, Pulsa &\nI")
+                putExtra(PaymentSuccessActivity.EXTRA_AMOUNT, 8000L)
+                putExtra(PaymentSuccessActivity.EXTRA_FORMATTED_AMOUNT, "Rp8.000")
+                putExtra(PaymentSuccessActivity.EXTRA_BALANCE, "Rp 9.498")
+            }
+            startActivity(intent)
+            dismiss()
         }
 
         binding.tabScan.setOnClickListener {
@@ -83,3 +101,4 @@ class PayBottomSheetDialogFragment : BottomSheetDialogFragment() {
         fun newInstance() = PayBottomSheetDialogFragment()
     }
 }
+

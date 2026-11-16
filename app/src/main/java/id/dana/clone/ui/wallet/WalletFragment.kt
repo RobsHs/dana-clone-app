@@ -40,3 +40,4 @@ class WalletFragment : Fragment() {
         _binding = null
     }
 }
+
