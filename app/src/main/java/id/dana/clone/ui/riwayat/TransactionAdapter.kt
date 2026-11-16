@@ -1,11 +1,11 @@
 package id.dana.clone.ui.riwayat
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -43,13 +43,13 @@ class TransactionAdapter : ListAdapter<TransactionEntity, TransactionAdapter.Tra
             tvTimestamp.text = sdf.format(Date(trx.timestamp))
 
             val formatted = NumberFormat.getNumberInstance(Locale("id", "ID")).format(trx.amount)
-            if (trx.type == "ISI_SALDO" || trx.type == "MINTA_UANG") {
-                tvAmount.text = "Rp$formatted"
-                tvAmount.setTextColor(context.getColor(R.color.text_primary))
+            val displayAmount = if (trx.type == "ISI_SALDO" || trx.type == "MINTA_UANG") {
+                "Rp$formatted"
             } else {
-                tvAmount.text = "-Rp$formatted"
-                tvAmount.setTextColor(context.getColor(R.color.text_primary))
+                "-Rp$formatted"
             }
+            tvAmount.text = displayAmount
+            tvAmount.setTextColor(context.getColor(R.color.text_primary))
 
             // Map exact logo to transaction title
             when {
@@ -84,19 +84,18 @@ class TransactionAdapter : ListAdapter<TransactionEntity, TransactionAdapter.Tra
             }
 
             itemView.setOnClickListener {
-                AlertDialog.Builder(context)
-                    .setTitle(trx.title)
-                    .setMessage(
-                        "Transaction Details:\n\n" +
-                        "Amount: ${tvAmount.text}\n" +
-                        "Date: ${tvTimestamp.text}\n" +
-                        "Category: ${trx.type}\n" +
-                        "Account / Ref: ${trx.accountOrPhone}\n" +
-                        "Status: ${trx.status}\n\n" +
-                        "Secured by DANA Protection"
+                val intent = Intent(context, TransactionDetailActivity::class.java).apply {
+                    putExtra(TransactionDetailActivity.EXTRA_TITLE, trx.title)
+                    putExtra(TransactionDetailActivity.EXTRA_AMOUNT, trx.amount)
+                    putExtra(TransactionDetailActivity.EXTRA_FORMATTED_AMOUNT, "Rp$formatted")
+                    putExtra(TransactionDetailActivity.EXTRA_DATE, tvTimestamp.text.toString())
+                    putExtra(TransactionDetailActivity.EXTRA_DANA_ID, "DANA ID 0881•••5924")
+                    putExtra(
+                        TransactionDetailActivity.EXTRA_METHOD,
+                        if (trx.type == "ISI_SALDO") "Bank Transfer\n(Virtual Account)" else "DANA Balance\n(SmartPay)"
                     )
-                    .setPositiveButton("OK", null)
-                    .show()
+                }
+                context.startActivity(intent)
             }
         }
     }

@@ -60,6 +60,18 @@ class RiwayatFragment : Fragment() {
         binding.itemOctoberTiktok.tvTxAmount.text = "-Rp894"
         binding.itemOctoberTiktok.ivTxLogo.setImageResource(R.drawable.ic_tx_tiktok)
         binding.itemOctoberTiktok.ivTxBadge.setImageResource(R.drawable.ic_dana_logo)
+
+        binding.itemOctoberTiktok.root.setOnClickListener {
+            val intent = android.content.Intent(requireContext(), TransactionDetailActivity::class.java).apply {
+                putExtra(TransactionDetailActivity.EXTRA_TITLE, "TikTok")
+                putExtra(TransactionDetailActivity.EXTRA_AMOUNT, 894L)
+                putExtra(TransactionDetailActivity.EXTRA_FORMATTED_AMOUNT, "Rp894")
+                putExtra(TransactionDetailActivity.EXTRA_DATE, "18 Oct 2026 • 08:47")
+                putExtra(TransactionDetailActivity.EXTRA_DANA_ID, "DANA ID 0881•••5924")
+                putExtra(TransactionDetailActivity.EXTRA_METHOD, "DANA Balance\n(SmartPay)")
+            }
+            startActivity(intent)
+        }
     }
 
     private fun setupHeaderActions() {
