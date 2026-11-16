@@ -3,21 +3,21 @@
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_nav_home"
-        android:title="@string/nav_beranda" />
+        android:title="@string/nav_home" />
     <item
-        android:id="@+id/nav_riwayat"
-        android:icon="@drawable/ic_nav_history"
-        android:title="@string/nav_aktivitas" />
+        android:id="@+id/nav_activity"
+        android:icon="@drawable/ic_nav_activity_badge"
+        android:title="@string/nav_activity" />
     <item
         android:id="@+id/nav_pay"
         android:icon="@drawable/ic_nav_pay"
         android:title="@string/nav_pay" />
     <item
-        android:id="@+id/nav_minta"
+        android:id="@+id/nav_wallet"
         android:icon="@drawable/ic_nav_wallet"
-        android:title="@string/nav_dompet" />
+        android:title="@string/nav_wallet" />
     <item
-        android:id="@+id/nav_saya"
-        android:icon="@drawable/ic_nav_profile"
-        android:title="@string/nav_saya" />
+        android:id="@+id/nav_me"
+        android:icon="@drawable/ic_nav_me_avatar"
+        android:title="@string/nav_me" />
 </menu>

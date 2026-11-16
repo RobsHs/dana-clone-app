@@ -5,13 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import id.dana.clone.DanaCloneApplication
+import id.dana.clone.R
 import id.dana.clone.databinding.FragmentSayaBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.io.File
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -20,11 +21,9 @@ class SayaFragment : Fragment() {
     private var _binding: FragmentSayaBinding? = null
     private val binding get() = _binding!!
 
-    private val app by lazy {
-        requireActivity().application as DanaCloneApplication
+    private val repository by lazy {
+        (requireActivity().application as DanaCloneApplication).repository
     }
-    private val repository by lazy { app.repository }
-    private val preferences by lazy { app.preferences }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,62 +37,97 @@ class SayaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupProfileObserver()
-        setupInternalStorageInfo()
-        setupSimulationActions()
-        setupSecuritySwitches()
+        setupUserAccountObserver()
+        setupTabs()
+        setupMenuActions()
     }
 
-    private fun setupProfileObserver() {
+    private fun setupUserAccountObserver() {
         viewLifecycleOwner.lifecycleScope.launch {
             repository.userAccount.collectLatest { account ->
                 account?.let {
-                    binding.tvProfileName.text = it.fullName
-                    binding.tvProfilePhone.text = it.phoneNumber
+                    val formatted = NumberFormat.getNumberInstance(Locale("id", "ID")).format(it.balance)
+                    binding.tvMeBalance.text = "Rp$formatted"
+                    binding.tvProfilePhone.text = it.phoneNumber.ifBlank { "08••••••••24 >" }
                 }
             }
         }
     }
 
-    private fun setupInternalStorageInfo() {
-        val dbFile = requireContext().getDatabasePath("dana_internal.db")
-        val dbSizeKb = if (dbFile.exists()) dbFile.length() / 1024 else 0
-        binding.tvDbPath.text = "${dbFile.absolutePath} (${dbSizeKb} KB)"
-    }
-
-    private fun setupSimulationActions() {
-        binding.btnQuickTopUp100k.setOnClickListener {
-            viewLifecycleOwner.lifecycleScope.launch {
-                repository.topUpBalance(100000L, "Simulasi Saldo Internal")
-                Toast.makeText(requireContext(), "Berhasil menambah saldo internal: Rp 100.000", Toast.LENGTH_SHORT).show()
-                setupInternalStorageInfo()
-            }
+    private fun setupTabs() {
+        binding.tabPersonal.setOnClickListener {
+            binding.tabPersonal.setBackgroundResource(R.drawable.bg_tab_active_pill)
+            binding.tabPersonal.setTextColor(requireContext().getColor(R.color.dana_blue))
+            binding.tabBisnis.background = null
+            binding.tabBisnis.setTextColor(requireContext().getColor(R.color.white))
         }
 
-        binding.btnQuickTopUp500k.setOnClickListener {
-            viewLifecycleOwner.lifecycleScope.launch {
-                repository.topUpBalance(500000L, "Simulasi Saldo Internal")
-                Toast.makeText(requireContext(), "Berhasil menambah saldo internal: Rp 500.000", Toast.LENGTH_SHORT).show()
-                setupInternalStorageInfo()
-            }
+        binding.tabBisnis.setOnClickListener {
+            binding.tabBisnis.setBackgroundResource(R.drawable.bg_tab_active_pill)
+            binding.tabBisnis.setTextColor(requireContext().getColor(R.color.dana_blue))
+            binding.tabPersonal.background = null
+            binding.tabPersonal.setTextColor(requireContext().getColor(R.color.white))
+            Toast.makeText(requireContext(), "Beralih ke Profil Bisnis", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun setupSecuritySwitches() {
-        binding.switchBiometric.isChecked = preferences.isBiometricEnabled
-        binding.switchProtection.isChecked = preferences.isDanaProtectionActive
-
-        binding.switchBiometric.setOnCheckedChangeListener { _, isChecked ->
-            preferences.isBiometricEnabled = isChecked
-            val status = if (isChecked) "diaktifkan" else "dinonaktifkan"
-            Toast.makeText(requireContext(), "Otentikasi biometrik lokal $status", Toast.LENGTH_SHORT).show()
+    private fun setupMenuActions() {
+        binding.btnMyQr.setOnClickListener {
+            showQrDialog()
         }
 
-        binding.switchProtection.setOnCheckedChangeListener { _, isChecked ->
-            preferences.isDanaProtectionActive = isChecked
-            val status = if (isChecked) "diaktifkan" else "dinonaktifkan"
-            Toast.makeText(requireContext(), "DANA Protection $status", Toast.LENGTH_SHORT).show()
+        binding.btnXtraProtection.setOnClickListener {
+            Toast.makeText(requireContext(), "Xtra Protection: 100% Proteksi Saldo Aktif", Toast.LENGTH_SHORT).show()
         }
+
+        binding.ivPremiumFailedBanner.setOnClickListener {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Status DANA Premium")
+                .setMessage("Verifikasi DANA Premium belum berhasil. Silakan unggah foto e-KTP dan selfie ulang untuk menikmati limit transaksi lebih tinggi.")
+                .setPositiveButton("Coba Lagi", null)
+                .setNegativeButton("Tutup", null)
+                .show()
+        }
+
+        binding.menuMyBills.setOnClickListener {
+            Toast.makeText(requireContext(), "My Bills: Semua tagihan sudah lunas", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.menuSkinCollection.setOnClickListener {
+            Toast.makeText(requireContext(), "Skin Collection: 3 Skin Pokémon Aktif!", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.menuVoucherPromo.setOnClickListener {
+            Toast.makeText(requireContext(), "Voucher Promo: TEMPO Rp100.000 & Leonian Rp192.000", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.menuSettings.setOnClickListener {
+            Toast.makeText(requireContext(), "Pengaturan Keamanan & Akun DANA", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.menuGeneralInfo.setOnClickListener {
+            AlertDialog.Builder(requireContext())
+                .setTitle("General Info DANA")
+                .setMessage(
+                    "App Version: 2.151.0\n" +
+                    "PT Espay Debit Indonesia Koe\n" +
+                    "Terdaftar serta diawasi oleh Bank Indonesia dan Komdigi"
+                )
+                .setPositiveButton("OK", null)
+                .show()
+        }
+
+        binding.menuDianaHelp.setOnClickListener {
+            Toast.makeText(requireContext(), "Menghubungi DIANA Customer Support...", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun showQrDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("MY QR CODE")
+            .setMessage("Tunjukkan QR ini ke kasir atau teman untuk menerima saldo DANA secara instan.\n\nNomor Akun: 08••••••••24")
+            .setPositiveButton("Tutup", null)
+            .show()
     }
 
     override fun onDestroyView() {

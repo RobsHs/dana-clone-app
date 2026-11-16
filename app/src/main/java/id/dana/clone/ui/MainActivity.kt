@@ -7,13 +7,22 @@ import id.dana.clone.R
 import id.dana.clone.databinding.ActivityMainBinding
 import id.dana.clone.ui.home.HomeFragment
 import id.dana.clone.ui.kirim.KirimFragment
-import id.dana.clone.ui.minta.MintaFragment
+import id.dana.clone.ui.pay.PayBottomSheetDialogFragment
 import id.dana.clone.ui.riwayat.RiwayatFragment
 import id.dana.clone.ui.saya.SayaFragment
+import id.dana.clone.ui.wallet.WalletFragment
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    private val homeFragment = HomeFragment()
+    private val riwayatFragment = RiwayatFragment()
+    private val walletFragment = WalletFragment()
+    private val sayaFragment = SayaFragment()
+    private val kirimFragment = KirimFragment()
+
+    private var currentTab = "HOME"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,38 +30,31 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         if (savedInstanceState == null) {
-            loadFragment(HomeFragment())
+            navigateToHome()
         }
 
-        setupBottomNavigation()
+        setupBottomBar()
     }
 
-    private fun setupBottomNavigation() {
-        binding.bottomNav.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home -> {
-                    loadFragment(HomeFragment())
-                    true
-                }
-                R.id.nav_riwayat -> {
-                    loadFragment(RiwayatFragment())
-                    true
-                }
-                R.id.nav_pay -> {
-                    // Pay (QRIS) action
-                    navigateToPay()
-                    true
-                }
-                R.id.nav_minta -> {
-                    loadFragment(MintaFragment())
-                    true
-                }
-                R.id.nav_saya -> {
-                    loadFragment(SayaFragment())
-                    true
-                }
-                else -> false
-            }
+    private fun setupBottomBar() {
+        binding.btnNavHome.setOnClickListener {
+            navigateToHome()
+        }
+
+        binding.btnNavActivity.setOnClickListener {
+            navigateToActivity()
+        }
+
+        binding.btnNavPayCenter.setOnClickListener {
+            navigateToPay()
+        }
+
+        binding.btnNavWallet.setOnClickListener {
+            navigateToWallet()
+        }
+
+        binding.btnNavMe.setOnClickListener {
+            navigateToMe()
         }
     }
 
@@ -62,20 +64,52 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    fun navigateToKirim() {
-        loadFragment(KirimFragment())
+    fun navigateToHome() {
+        currentTab = "HOME"
+        updateTabSelection()
+        loadFragment(homeFragment)
     }
 
-    fun navigateToMinta() {
-        binding.bottomNav.selectedItemId = R.id.nav_minta
+    fun navigateToActivity() {
+        currentTab = "ACTIVITY"
+        updateTabSelection()
+        loadFragment(riwayatFragment)
     }
 
-    fun navigateToRiwayat() {
-        binding.bottomNav.selectedItemId = R.id.nav_riwayat
+    fun navigateToWallet() {
+        currentTab = "WALLET"
+        updateTabSelection()
+        loadFragment(walletFragment)
+    }
+
+    fun navigateToMe() {
+        currentTab = "ME"
+        updateTabSelection()
+        loadFragment(sayaFragment)
     }
 
     fun navigateToPay() {
-        // Open QRIS scanner simulation
-        loadFragment(MintaFragment())
+        PayBottomSheetDialogFragment.newInstance()
+            .show(supportFragmentManager, PayBottomSheetDialogFragment.TAG)
+    }
+
+    fun navigateToKirim() {
+        loadFragment(kirimFragment)
+    }
+
+    private fun updateTabSelection() {
+        val activeColor = getColor(R.color.text_primary)
+        val inactiveColor = getColor(R.color.text_secondary)
+
+        // Reset all
+        binding.tvNavHome.setTextColor(if (currentTab == "HOME") activeColor else inactiveColor)
+        binding.ivNavHome.setColorFilter(if (currentTab == "HOME") activeColor else inactiveColor)
+
+        binding.tvNavActivity.setTextColor(if (currentTab == "ACTIVITY") activeColor else inactiveColor)
+
+        binding.tvNavWallet.setTextColor(if (currentTab == "WALLET") activeColor else inactiveColor)
+        binding.ivNavWallet.setColorFilter(if (currentTab == "WALLET") activeColor else inactiveColor)
+
+        binding.tvNavMe.setTextColor(if (currentTab == "ME") activeColor else inactiveColor)
     }
 }

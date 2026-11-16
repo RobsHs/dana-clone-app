@@ -5,27 +5,179 @@
     android:layout_height="match_parent"
     android:background="@color/bg_page">
 
+    <!-- Fragment Main Viewport -->
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintBottom_toTopOf="@id/bottomBarContainer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNav"
+    <!-- DANA Bottom Bar Container -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomBarContainer"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="62dp"
         android:background="@color/white"
-        app:elevation="8dp"
-        app:itemIconTint="@color/dana_blue"
-        app:itemTextColor="@color/dana_blue"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_nav_menu"
+        android:elevation="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#EAEAEA"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <!-- 1. HOME -->
+            <LinearLayout
+                android:id="@+id/btnNavHome"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/ivNavHome"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_nav_home"
+                    app:tint="#2B2B2B" />
+
+                <TextView
+                    android:id="@+id/tvNavHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/nav_home"
+                    android:textColor="#2B2B2B"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- 2. ACTIVITY -->
+            <LinearLayout
+                android:id="@+id/btnNavActivity"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/ivNavActivity"
+                    android:layout_width="26dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_nav_activity_badge" />
+
+                <TextView
+                    android:id="@+id/tvNavActivity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/nav_activity"
+                    android:textColor="#727272"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- Center Spacer for Floating PAY Button -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2" />
+
+            <!-- 3. WALLET -->
+            <LinearLayout
+                android:id="@+id/btnNavWallet"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/ivNavWallet"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_nav_wallet"
+                    app:tint="#727272" />
+
+                <TextView
+                    android:id="@+id/tvNavWallet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/nav_wallet"
+                    android:textColor="#727272"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- 4. ME -->
+            <LinearLayout
+                android:id="@+id/btnNavMe"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/ivNavMe"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_nav_me_avatar" />
+
+                <TextView
+                    android:id="@+id/tvNavMe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/nav_me"
+                    android:textColor="#727272"
+                    android:textSize="11sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Elevated Floating PAY Button in the Center -->
+    <FrameLayout
+        android:id="@+id/btnNavPayCenter"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:layout_marginBottom="14dp"
+        android:elevation="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_nav_pay_center"
+            android:contentDescription="PAY" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

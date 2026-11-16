@@ -29,45 +29,73 @@ class TransactionAdapter : ListAdapter<TransactionEntity, TransactionAdapter.Tra
     }
 
     class TransactionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val tvTitle: TextView = itemView.findViewById(R.id.tvTrxTitle)
-        private val tvDate: TextView = itemView.findViewById(R.id.tvTrxDate)
-        private val tvAmount: TextView = itemView.findViewById(R.id.tvTrxAmount)
-        private val tvStatus: TextView = itemView.findViewById(R.id.tvTrxStatus)
-        private val ivIcon: ImageView = itemView.findViewById(R.id.ivTrxIcon)
+        private val tvTitle: TextView = itemView.findViewById(R.id.tvTxTitle)
+        private val tvTimestamp: TextView = itemView.findViewById(R.id.tvTxTimestamp)
+        private val tvAmount: TextView = itemView.findViewById(R.id.tvTxAmount)
+        private val ivLogo: ImageView = itemView.findViewById(R.id.ivTxLogo)
+        private val ivBadge: ImageView = itemView.findViewById(R.id.ivTxBadge)
 
         fun bind(trx: TransactionEntity) {
             val context = itemView.context
             tvTitle.text = trx.title
-            tvDate.text = SimpleDateFormat("dd MMM yyyy, HH:mm", Locale("id", "ID")).format(Date(trx.timestamp)) + " WIB"
+
+            val sdf = SimpleDateFormat("dd MMM yyyy • HH:mm", Locale("en", "US"))
+            tvTimestamp.text = sdf.format(Date(trx.timestamp))
 
             val formatted = NumberFormat.getNumberInstance(Locale("id", "ID")).format(trx.amount)
-            if (trx.type == "ISI_SALDO") {
-                tvAmount.text = "+Rp $formatted"
-                tvAmount.setTextColor(context.getColor(R.color.dana_green))
-                ivIcon.setImageResource(R.drawable.ic_topup)
-            } else {
-                tvAmount.text = "-Rp $formatted"
+            if (trx.type == "ISI_SALDO" || trx.type == "MINTA_UANG") {
+                tvAmount.text = "Rp$formatted"
                 tvAmount.setTextColor(context.getColor(R.color.text_primary))
-                ivIcon.setImageResource(R.drawable.ic_kirim)
+            } else {
+                tvAmount.text = "-Rp$formatted"
+                tvAmount.setTextColor(context.getColor(R.color.text_primary))
             }
 
-            tvStatus.text = trx.status
+            // Map exact logo to transaction title
+            when {
+                trx.title.contains("Axis", ignoreCase = true) -> {
+                    ivLogo.setImageResource(R.drawable.ic_tx_axis)
+                    ivBadge.setImageResource(R.drawable.ic_dana_logo)
+                }
+                trx.title.contains("AMIDO", ignoreCase = true) -> {
+                    ivLogo.setImageResource(R.drawable.ic_tx_amido)
+                    ivBadge.setImageResource(R.drawable.ic_nav_wallet)
+                }
+                trx.title.contains("TikTok", ignoreCase = true) -> {
+                    ivLogo.setImageResource(R.drawable.ic_tx_tiktok)
+                    ivBadge.setImageResource(R.drawable.ic_dana_logo)
+                }
+                trx.title.contains("itemku", ignoreCase = true) -> {
+                    ivLogo.setImageResource(R.drawable.ic_tx_itemku)
+                    ivBadge.setImageResource(R.drawable.ic_dana_logo)
+                }
+                trx.title.contains("Indah", ignoreCase = true) -> {
+                    ivLogo.setImageResource(R.drawable.ic_tx_indah)
+                    ivBadge.setImageResource(R.drawable.ic_dana_logo)
+                }
+                trx.title.contains("Receive", ignoreCase = true) -> {
+                    ivLogo.setImageResource(R.drawable.ic_tx_receive)
+                    ivBadge.setImageResource(R.drawable.ic_dana_logo)
+                }
+                else -> {
+                    ivLogo.setImageResource(R.drawable.ic_dana_logo)
+                    ivBadge.setImageResource(R.drawable.ic_dana_logo)
+                }
+            }
 
             itemView.setOnClickListener {
                 AlertDialog.Builder(context)
-                    .setTitle("Bukti Transaksi Internal")
+                    .setTitle(trx.title)
                     .setMessage(
-                        "ID Transaksi: ${trx.id}\n" +
-                        "Tipe: ${trx.type}\n" +
-                        "Nominal: Rp $formatted\n" +
-                        "Pihak Terkait: ${trx.recipientOrSender}\n" +
-                        "Akun/HP: ${trx.accountOrPhone}\n" +
-                        "Catatan: ${trx.note}\n" +
-                        "Waktu: ${tvDate.text}\n" +
+                        "Transaction Details:\n\n" +
+                        "Amount: ${tvAmount.text}\n" +
+                        "Date: ${tvTimestamp.text}\n" +
+                        "Category: ${trx.type}\n" +
+                        "Account / Ref: ${trx.accountOrPhone}\n" +
                         "Status: ${trx.status}\n\n" +
-                        "Tersimpan dalam SQLite Room Internal (/data/user/0/id.dana.clone/)"
+                        "Secured by DANA Protection"
                     )
-                    .setPositiveButton("Tutup", null)
+                    .setPositiveButton("OK", null)
                     .show()
             }
         }

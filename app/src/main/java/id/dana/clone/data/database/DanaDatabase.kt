@@ -14,11 +14,12 @@ import id.dana.clone.data.database.entities.UserAccountEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.Calendar
 
 /**
  * Main Room Database residing strictly in app internal storage:
  * Path: /data/user/0/id.dana.clone/databases/dana_internal.db
- * Zero dependencies on external storage or remote network APIs.
+ * Seeded with authentic Indonesian DANA transaction history.
  */
 @Database(
     entities = [
@@ -26,7 +27,7 @@ import kotlinx.coroutines.launch
         TransactionEntity::class,
         BeneficiaryEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class DanaDatabase : RoomDatabase() {
@@ -45,6 +46,7 @@ abstract class DanaDatabase : RoomDatabase() {
                     DanaDatabase::class.java,
                     "dana_internal.db"
                 )
+                    .fallbackToDestructiveMigration()
                     .addCallback(DatabaseCallback(scope))
                     .build()
                 INSTANCE = instance
@@ -69,96 +71,132 @@ abstract class DanaDatabase : RoomDatabase() {
                 val trxDao = database.transactionDao()
                 val benDao = database.beneficiaryDao()
 
-                // Default Internal User Account
+                // Exact user account matching screenshots
                 userDao.insertOrUpdate(
                     UserAccountEntity(
                         id = 1,
-                        fullName = "Budi Pratama",
-                        phoneNumber = "0812-8899-7711",
-                        kycTier = "DANA Premium",
-                        balance = 3450000L,
+                        fullName = "dana1497uwpx",
+                        phoneNumber = "08••••••••24 >",
+                        kycTier = "DANA Premium Failed",
+                        balance = 6832L,
                         danaPoints = 2850,
                         danaCicilLimit = 7500000L,
                         isBalanceHidden = false
                     )
                 )
 
-                // Default Internal Transactions (Authentic Indonesian DANA copy)
-                val now = System.currentTimeMillis()
+                // 15 Nov 2026 19:00
+                val cal = Calendar.getInstance().apply {
+                    set(2026, Calendar.NOVEMBER, 15, 19, 0, 0)
+                }
+
                 trxDao.insertTransaction(
                     TransactionEntity(
-                        id = "TRX20261108001",
-                        type = "KIRIM_UANG",
-                        title = "Kirim Uang ke BCA",
-                        amount = 250000L,
+                        id = "TRX20261115001",
+                        type = "TAGIHAN",
+                        title = "Axis",
+                        amount = 13500L,
                         fee = 0L,
-                        recipientOrSender = "Siti Rahma",
-                        accountOrPhone = "8219082138",
-                        note = "Bayar makan siang",
-                        timestamp = now - (1000 * 60 * 45), // 45 mins ago
-                        status = "BERHASIL"
-                    )
-                )
-                trxDao.insertTransaction(
-                    TransactionEntity(
-                        id = "TRX20261108002",
-                        type = "BAYAR_QRIS",
-                        title = "Pembayaran QRIS",
-                        amount = 45000L,
-                        fee = 0L,
-                        recipientOrSender = "Kopi Kenangan Grand Indonesia",
-                        accountOrPhone = "NMID: ID102003891238",
-                        note = "2x Kopi Kenangan Mantan",
-                        timestamp = now - (1000 * 60 * 60 * 3), // 3 hours ago
-                        status = "BERHASIL"
-                    )
-                )
-                trxDao.insertTransaction(
-                    TransactionEntity(
-                        id = "TRX20261107001",
-                        type = "ISI_SALDO",
-                        title = "Isi Saldo via BCA OneKlik",
-                        amount = 1000000L,
-                        fee = 0L,
-                        recipientOrSender = "Bank BCA",
-                        accountOrPhone = "•••• 8912",
-                        note = "Top Up DANA Saldo",
-                        timestamp = now - (1000 * 60 * 60 * 24), // 1 day ago
+                        recipientOrSender = "Axis",
+                        accountOrPhone = "Pulsa & Data",
+                        note = "Beli Paket Data",
+                        timestamp = cal.timeInMillis,
                         status = "BERHASIL"
                     )
                 )
 
-                // Default Saved Beneficiaries
-                benDao.insertAll(
-                    listOf(
-                        BeneficiaryEntity(
-                            name = "Siti Rahma",
-                            accountNumber = "0813-9821-4455",
-                            bankOrProvider = "DANA",
-                            avatarColor = "#118EEA",
-                            isFavorite = true
-                        ),
-                        BeneficiaryEntity(
-                            name = "Ahmad Fauzi",
-                            accountNumber = "5270192831",
-                            bankOrProvider = "BCA",
-                            avatarColor = "#005E9E",
-                            isFavorite = true
-                        ),
-                        BeneficiaryEntity(
-                            name = "Dewi Lestari",
-                            accountNumber = "0856-1122-3344",
-                            bankOrProvider = "DANA",
-                            avatarColor = "#16B364",
-                            isFavorite = true
-                        ),
-                        BeneficiaryEntity(
-                            name = "Rian Hidayat",
-                            accountNumber = "012398210398",
-                            bankOrProvider = "Bank Mandiri",
-                            avatarColor = "#003A70",
-                            isFavorite = false
-                        )
+                // 15 Nov 2026 18:47
+                cal.set(2026, Calendar.NOVEMBER, 15, 18, 47, 0)
+                trxDao.insertTransaction(
+                    TransactionEntity(
+                        id = "TRX20261115002",
+                        type = "ISI_SALDO",
+                        title = "Top Up from AMIDO PAY",
+                        amount = 20000L,
+                        fee = 0L,
+                        recipientOrSender = "AMIDO PAY",
+                        accountOrPhone = "DANA Wallet",
+                        note = "Top Up Berhasil",
+                        timestamp = cal.timeInMillis,
+                        status = "BERHASIL"
+                    )
+                )
+
+                // 07 Nov 2026 22:20
+                cal.set(2026, Calendar.NOVEMBER, 7, 22, 20, 0)
+                trxDao.insertTransaction(
+                    TransactionEntity(
+                        id = "TRX20261107001",
+                        type = "BAYAR_QRIS",
+                        title = "TikTok",
+                        amount = 2886L,
+                        fee = 0L,
+                        recipientOrSender = "TikTok",
+                        accountOrPhone = "Google Play",
+                        note = "TikTok Coins",
+                        timestamp = cal.timeInMillis,
+                        status = "BERHASIL"
+                    )
+                )
+
+                // 07 Nov 2026 12:44
+                cal.set(2026, Calendar.NOVEMBER, 7, 12, 44, 0)
+                trxDao.insertTransaction(
+                    TransactionEntity(
+                        id = "TRX20261107002",
+                        type = "BAYAR_QRIS",
+                        title = "itemku.com - TR0000016...",
+                        amount = 4731L,
+                        fee = 0L,
+                        recipientOrSender = "itemku.com",
+                        accountOrPhone = "TR0000016...",
+                        note = "Pembelian Voucher",
+                        timestamp = cal.timeInMillis,
+                        status = "BERHASIL"
+                    )
+                )
+
+                // 06 Nov 2026 23:07
+                cal.set(2026, Calendar.NOVEMBER, 6, 23, 7, 0)
+                trxDao.insertTransaction(
+                    TransactionEntity(
+                        id = "TRX20261106001",
+                        type = "BAYAR_QRIS",
+                        title = "Indah Gametopup",
+                        amount = 12177L,
+                        fee = 0L,
+                        recipientOrSender = "Indah Gametopup",
+                        accountOrPhone = "QRIS Merchant",
+                        note = "Game Topup",
+                        timestamp = cal.timeInMillis,
+                        status = "BERHASIL"
+                    )
+                )
+
+                // 06 Nov 2026 07:12
+                cal.set(2026, Calendar.NOVEMBER, 6, 7, 12, 0)
+                trxDao.insertTransaction(
+                    TransactionEntity(
+                        id = "TRX20261106002",
+                        type = "MINTA_UANG",
+                        title = "Receive Money",
+                        amount = 20000L,
+                        fee = 0L,
+                        recipientOrSender = "DANA User",
+                        accountOrPhone = "DANA Transfer",
+                        note = "Terima Saldo",
+                        timestamp = cal.timeInMillis,
+                        status = "BERHASIL"
+                    )
+                )
+
+                // Beneficiaries
+                benDao.insertBeneficiary(
+                    BeneficiaryEntity(
+                        accountNumber = "081288997711",
+                        accountName = "Siti Rahma",
+                        bankName = "DANA",
+                        isFavorite = true
                     )
                 )
             }
