@@ -54,3 +54,4 @@ class PaymentSuccessActivity : AppCompatActivity() {
         const val EXTRA_BALANCE = "extra_balance"
     }
 }
+

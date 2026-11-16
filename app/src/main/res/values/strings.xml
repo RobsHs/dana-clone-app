@@ -95,6 +95,19 @@
     <string name="pay_qr_pay">QR PAY</string>
     <string name="smartpay_balance">DANA Balance</string>
 
+    <!-- Kirim & Minta Uang -->
+    <string name="kirim_uang_title">Kirim Uang</string>
+    <string name="label_penerima">Nama Penerima</string>
+    <string name="label_rekening">Nomor HP / Rekening</string>
+    <string name="label_nominal">Jumlah Kirim (Rp)</string>
+    <string name="label_catatan">Catatan (Opsional)</string>
+    <string name="btn_kirim_sekarang">Kirim Uang Sekarang</string>
+
+    <string name="minta_uang_title">Minta Uang</string>
+    <string name="minta_desc">Bagikan kode QR atau link untuk menerima uang secara instan.</string>
+    <string name="btn_atur_jumlah">Atur Jumlah</string>
+    <string name="btn_bagikan">Bagikan QR</string>
+
     <!-- Bottom Navigation -->
     <string name="nav_home">Home</string>
     <string name="nav_activity">Activity</string>
