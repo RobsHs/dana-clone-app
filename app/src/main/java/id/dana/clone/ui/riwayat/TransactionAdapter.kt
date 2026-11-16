@@ -55,31 +55,31 @@ class TransactionAdapter : ListAdapter<TransactionEntity, TransactionAdapter.Tra
             when {
                 trx.title.contains("Axis", ignoreCase = true) -> {
                     ivLogo.setImageResource(R.drawable.ic_tx_axis)
-                    ivBadge.setImageResource(R.drawable.ic_dana_logo)
+                    ivBadge.setImageResource(R.drawable.ic_badge_dana_wallet)
                 }
                 trx.title.contains("AMIDO", ignoreCase = true) -> {
                     ivLogo.setImageResource(R.drawable.ic_tx_amido)
-                    ivBadge.setImageResource(R.drawable.ic_nav_wallet)
+                    ivBadge.setImageResource(R.drawable.ic_badge_bank)
                 }
                 trx.title.contains("TikTok", ignoreCase = true) -> {
                     ivLogo.setImageResource(R.drawable.ic_tx_tiktok)
-                    ivBadge.setImageResource(R.drawable.ic_dana_logo)
+                    ivBadge.setImageResource(R.drawable.ic_badge_dana_wallet)
                 }
                 trx.title.contains("itemku", ignoreCase = true) -> {
                     ivLogo.setImageResource(R.drawable.ic_tx_itemku)
-                    ivBadge.setImageResource(R.drawable.ic_dana_logo)
+                    ivBadge.setImageResource(R.drawable.ic_badge_dana_wallet)
                 }
                 trx.title.contains("Indah", ignoreCase = true) -> {
                     ivLogo.setImageResource(R.drawable.ic_tx_indah)
-                    ivBadge.setImageResource(R.drawable.ic_dana_logo)
+                    ivBadge.setImageResource(R.drawable.ic_badge_dana_wallet)
                 }
                 trx.title.contains("Receive", ignoreCase = true) -> {
                     ivLogo.setImageResource(R.drawable.ic_tx_receive)
-                    ivBadge.setImageResource(R.drawable.ic_dana_logo)
+                    ivBadge.setImageResource(R.drawable.ic_badge_dana_wallet)
                 }
                 else -> {
                     ivLogo.setImageResource(R.drawable.ic_dana_logo)
-                    ivBadge.setImageResource(R.drawable.ic_dana_logo)
+                    ivBadge.setImageResource(R.drawable.ic_badge_dana_wallet)
                 }
             }
 

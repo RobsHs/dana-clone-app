@@ -16,6 +16,8 @@ class PaymentSuccessActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.statusBarColor = android.graphics.Color.parseColor("#07335C")
+        window.navigationBarColor = android.graphics.Color.parseColor("#07335C")
         binding = ActivityPaymentSuccessBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

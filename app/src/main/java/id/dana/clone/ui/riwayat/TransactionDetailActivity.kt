@@ -16,6 +16,8 @@ class TransactionDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.statusBarColor = getColor(R.color.dana_blue)
+        window.navigationBarColor = getColor(R.color.white)
         binding = ActivityTransactionDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

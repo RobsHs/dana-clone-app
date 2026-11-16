@@ -24,15 +24,13 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <TextView
+            <ImageView
                 android:id="@+id/btnBackActivity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingEnd="12dp"
-                android:text="&lt;"
-                android:textColor="@color/white"
-                android:textSize="22sp"
-                android:textStyle="bold" />
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:paddingEnd="8dp"
+                android:src="@drawable/ic_back_white"
+                android:contentDescription="Back" />
 
             <TextView
                 android:layout_width="0dp"
@@ -43,13 +41,12 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/btnExportActivity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="📥"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_download_tray"
+                android:contentDescription="Export" />
         </LinearLayout>
 
         <!-- Search Bar with Filter -->
@@ -63,11 +60,11 @@
             android:paddingEnd="12dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🔍"
-                android:textSize="14sp" />
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_search_grey"
+                android:contentDescription="Search" />
 
             <EditText
                 android:id="@+id/etSearchActivity"
@@ -83,11 +80,12 @@
                 android:textColorHint="#9E9E9E"
                 android:textSize="14sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="⚙️"
-                android:textSize="15sp" />
+            <ImageView
+                android:id="@+id/btnFilterActivity"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_filter_blue"
+                android:contentDescription="Filter" />
         </LinearLayout>
     </LinearLayout>
 
@@ -129,13 +127,27 @@
                     android:gravity="end"
                     android:orientation="vertical">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Statement &gt;"
-                        android:textColor="@color/dana_blue"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Statement"
+                            android:textColor="@color/dana_blue"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginStart="4dp"
+                            android:src="@drawable/ic_arrow_chevron_right_blue"
+                            android:contentDescription="Statement" />
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -175,13 +187,27 @@
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Statement &gt;"
-                    android:textColor="@color/dana_blue"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Statement"
+                        android:textColor="@color/dana_blue"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="4dp"
+                        android:src="@drawable/ic_arrow_chevron_right_blue"
+                        android:contentDescription="Statement" />
+                </LinearLayout>
             </LinearLayout>
 
             <!-- Static October item: TikTok -->
@@ -211,13 +237,27 @@
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Statement &gt;"
-                    android:textColor="@color/dana_blue"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Statement"
+                        android:textColor="@color/dana_blue"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="4dp"
+                        android:src="@drawable/ic_arrow_chevron_right_blue"
+                        android:contentDescription="Statement" />
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>

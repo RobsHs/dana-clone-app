@@ -442,11 +442,11 @@
                         android:textColor="#424242"
                         android:textSize="11sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🤍"
-                        android:textSize="12sp" />
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_heart_outline"
+                        android:contentDescription="Like" />
                 </LinearLayout>
 
                 <!-- Ticker 2 -->
@@ -480,11 +480,11 @@
                         android:textSize="11sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🤍"
-                        android:textSize="12sp" />
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_heart_outline"
+                        android:contentDescription="Like" />
                 </LinearLayout>
 
                 <!-- Ticker 3 -->
@@ -510,11 +510,11 @@
                         android:textColor="#424242"
                         android:textSize="11sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="📢"
-                        android:textSize="12sp" />
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_megaphone_blue"
+                        android:contentDescription="Announcement" />
                 </LinearLayout>
 
                 <!-- Ticker 4 -->
@@ -540,11 +540,11 @@
                         android:textColor="#424242"
                         android:textSize="11sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="📢"
-                        android:textSize="12sp" />
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_megaphone_blue"
+                        android:contentDescription="Announcement" />
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -582,29 +582,28 @@
             android:paddingEnd="14dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🛡️"
-                android:textSize="14sp" />
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_shield_check_white"
+                android:contentDescription="Protected" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:text="@string/protection_status_4"
                 android:textColor="@color/white"
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="&gt;"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_arrow_chevron_right_grey"
+                app:tint="@color/white"
+                android:contentDescription="More" />
         </LinearLayout>
 
         <!-- Suspicious Phone Number Search Bar -->
@@ -620,11 +619,11 @@
             android:paddingEnd="12dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🔍"
-                android:textSize="14sp" />
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_search_grey"
+                android:contentDescription="Search" />
 
             <TextView
                 android:layout_width="0dp"
@@ -646,31 +645,59 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🔒 DANA PROTECTION"
-                android:textColor="@color/dana_blue"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_lock_blue"
+                    android:contentDescription="Lock" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="@string/protection_title"
+                    android:textColor="@color/dana_blue"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_weight="1" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_badge_protected"
-                android:paddingStart="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="8dp"
                 android:paddingTop="3dp"
                 android:paddingEnd="10dp"
-                android:paddingBottom="3dp"
-                android:text="✔ 100%  PROTECTED"
-                android:textColor="@color/dana_blue"
-                android:textSize="11sp"
-                android:textStyle="bold" />
+                android:paddingBottom="3dp">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_shield_check_blue"
+                    android:contentDescription="Protected" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="100%  PROTECTED"
+                    android:textColor="@color/dana_blue"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </LinearLayout>
 
         <!-- DANA Deals Section -->

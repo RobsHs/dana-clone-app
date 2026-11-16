@@ -59,7 +59,7 @@ class RiwayatFragment : Fragment() {
         binding.itemOctoberTiktok.tvTxTimestamp.text = "18 Oct 2026 • 08:47"
         binding.itemOctoberTiktok.tvTxAmount.text = "-Rp894"
         binding.itemOctoberTiktok.ivTxLogo.setImageResource(R.drawable.ic_tx_tiktok)
-        binding.itemOctoberTiktok.ivTxBadge.setImageResource(R.drawable.ic_dana_logo)
+        binding.itemOctoberTiktok.ivTxBadge.setImageResource(R.drawable.ic_badge_dana_wallet)
 
         binding.itemOctoberTiktok.root.setOnClickListener {
             val intent = android.content.Intent(requireContext(), TransactionDetailActivity::class.java).apply {

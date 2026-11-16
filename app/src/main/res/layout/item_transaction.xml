@@ -75,9 +75,7 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginTop="4dp"
-            android:src="@drawable/ic_dana_logo"
-            app:tint="@color/dana_blue"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:src="@drawable/ic_badge_dana_wallet"
             android:contentDescription="DANA" />
     </LinearLayout>
 

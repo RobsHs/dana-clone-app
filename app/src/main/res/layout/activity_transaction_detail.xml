@@ -16,15 +16,13 @@
         android:paddingEnd="16dp"
         android:orientation="horizontal">
 
-        <TextView
+        <ImageView
             android:id="@+id/btnBackTxDetail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingEnd="16dp"
-            android:text="&lt;"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:paddingEnd="8dp"
+            android:src="@drawable/ic_back_white"
+            android:contentDescription="Back" />
 
         <TextView
             android:layout_width="0dp"
@@ -113,15 +111,11 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <ImageView
                         android:layout_width="18dp"
                         android:layout_height="18dp"
-                        android:background="@drawable/bg_circle_green_light"
-                        android:gravity="center"
-                        android:text="✔"
-                        android:textColor="@color/dana_green"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
+                        android:src="@drawable/ic_check_circle_green"
+                        android:contentDescription="Success" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -298,7 +292,22 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Secured by  🔒 DANA PROTECTION"
+                    android:text="Secured by"
+                    android:textColor="#757575"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginStart="6dp"
+                    android:src="@drawable/ic_shield_check_blue"
+                    android:contentDescription="Protected" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="DANA PROTECTION"
                     android:textColor="@color/dana_blue"
                     android:textSize="12sp"
                     android:textStyle="bold" />

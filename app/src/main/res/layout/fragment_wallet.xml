@@ -24,13 +24,28 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🔒 DANA\nPROTECTION"
-                android:textColor="@color/white"
-                android:textSize="9sp"
-                android:textStyle="bold" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_shield_check_white"
+                    android:contentDescription="Protected" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:lineSpacingExtra="0dp"
+                    android:text="DANA\nPROTECTION"
+                    android:textColor="@color/white"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="0dp"
@@ -42,14 +57,12 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/btnAddCardHeader"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:gravity="center"
-                android:text="⊕"
-                android:textColor="@color/white"
-                android:textSize="22sp" />
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_plus_circle_white"
+                android:contentDescription="Add" />
         </LinearLayout>
 
         <!-- Search Bar -->
@@ -63,11 +76,11 @@
             android:paddingEnd="12dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🔍"
-                android:textSize="14sp" />
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_search_grey"
+                android:contentDescription="Search" />
 
             <EditText
                 android:id="@+id/etSearchWallet"
@@ -151,13 +164,36 @@
                         android:layout_weight="1"
                         android:orientation="vertical">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Manage Payments 📷 SMARTPAY"
-                            android:textColor="#1F1F1F"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Manage Payments"
+                                android:textColor="#1F1F1F"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:layout_marginStart="6dp"
+                                android:src="@drawable/ic_badge_dana_wallet"
+                                android:contentDescription="SMARTPAY" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="3dp"
+                                android:text="SMARTPAY"
+                                android:textColor="@color/dana_blue"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
 
                         <TextView
                             android:layout_width="wrap_content"

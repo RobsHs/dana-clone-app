@@ -46,6 +46,10 @@ class KirimFragment : Fragment() {
         setupNominalChips()
         setupBeneficiariesObserver()
         setupSubmitButton()
+
+        binding.btnBackKirim.setOnClickListener {
+            (requireActivity() as? id.dana.clone.ui.MainActivity)?.navigateToHome()
+        }
     }
 
     private fun setupBalanceObserver() {

@@ -15,6 +15,8 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.statusBarColor = getColor(id.dana.clone.R.color.dana_blue)
+        window.navigationBarColor = getColor(id.dana.clone.R.color.dana_blue)
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

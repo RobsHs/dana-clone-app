@@ -43,6 +43,10 @@ class MintaFragment : Fragment() {
 
         setupUserObserver()
         setupButtons()
+
+        binding.btnBackMinta.setOnClickListener {
+            (requireActivity() as? id.dana.clone.ui.MainActivity)?.navigateToHome()
+        }
     }
 
     private fun setupUserObserver() {
