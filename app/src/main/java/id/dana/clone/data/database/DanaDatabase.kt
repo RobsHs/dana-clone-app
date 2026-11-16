@@ -193,9 +193,9 @@ abstract class DanaDatabase : RoomDatabase() {
                 // Beneficiaries
                 benDao.insertBeneficiary(
                     BeneficiaryEntity(
+                        name = "Siti Rahma",
                         accountNumber = "081288997711",
-                        accountName = "Siti Rahma",
-                        bankName = "DANA",
+                        bankOrProvider = "DANA",
                         isFavorite = true
                     )
                 )

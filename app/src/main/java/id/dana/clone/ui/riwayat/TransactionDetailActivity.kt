@@ -78,10 +78,10 @@ class TransactionDetailActivity : AppCompatActivity() {
                 .setTitle("Rincian Transaksi")
                 .setMessage(
                     "Penerima: ${binding.tvTxDetailTitle.text}\n" +
-                    "Metode: ${binding.tvTxDetailMethod.text.replace("\n", " ")}\n" +
-                    "Nominal: ${binding.tvTxDetailTotal.text.replace("∨", "").trim()}\n" +
+                    "Metode: ${binding.tvTxDetailMethod.text.toString().replace("\n", " ")}\n" +
+                    "Nominal: ${binding.tvTxDetailTotal.text.toString().replace("∨", "").trim()}\n" +
                     "Biaya Layanan: Rp0\n" +
-                    "Total: ${binding.tvTxDetailTotal.text.replace("∨", "").trim()}\n\n" +
+                    "Total: ${binding.tvTxDetailTotal.text.toString().replace("∨", "").trim()}\n\n" +
                     "Referensi: TRX-ID-" + System.currentTimeMillis().toString().takeLast(8)
                 )
                 .setPositiveButton("Tutup", null)
